@@ -9,14 +9,20 @@
 </head>
 
 <body>
+    <div class="container">
+        <h1>{{aim}}</h1>
     <div class="section1">
-        <input type="text" placeholder="
-        userid" class="form-control m-2">
-        
-        <input type="text" placeholder="
-        password" class="form-control m-2">
-        <button type="button"  class="btn btn-primary button1 ">LOGIN</button>
+        <!-- <input type="text" placeholder=" userid" class="form-control m-2" (change)="useridchange($event)">event binding using $event as argument -->
+        <input type="text" placeholder=" userid" class="form-control m-2" #userid><!--event binding using template refernecvariablee -->
+
+        <!-- <input type="text" placeholder="password" class="form-control m-2"(change)="passwordchange($event)" > -->
+        <input type="text" placeholder="password" class="form-control m-2" #password><!--event binding using template refernecvariablee -->
+
+        <!-- <button (click)="login()"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding (event)="functioncall()" -->
+        <button (click)="login(userid,password)"type="button"  class="btn btn-primary button1 ">LOGIN</button><!--event binding using template reference variable-->
+
     </div>
+</div>
 </body>
 
 </html>
