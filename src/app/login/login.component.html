@@ -13,14 +13,22 @@
         <h1>{{aim}}</h1>
     <div class="section1">
         <!-- <input type="text" placeholder=" userid" class="form-control m-2" (change)="useridchange($event)">event binding using $event as argument -->
-        <input type="text" placeholder=" userid" class="form-control m-2" #userid><!--event binding using template refernecvariablee -->
+        <!-- <input type="text" placeholder=" userid" class="form-control m-2" #userid>event binding using template refernecvariablee -->
+
+        <!-- two way data binding -->
+        <form (ngSubmit)="login()"><!--to use ngSubmit we need form tag and when we use ([ngModel]) then we should add a property named "name" and change button type to submit-->
+        <input type="text" placeholder=" userid" class="form-control m-2" name="userid"[(ngModel)]="userid">
 
         <!-- <input type="text" placeholder="password" class="form-control m-2"(change)="passwordchange($event)" > -->
-        <input type="text" placeholder="password" class="form-control m-2" #password><!--event binding using template refernecvariablee -->
+        <!-- <input type="text" placeholder="password" class="form-control m-2" #password>event binding using template refernecvariablee -->
+        <input type="text" placeholder="password" class="form-control m-2"  name="password"[(ngModel)]="password"><!--event binding using template refernecvariablee -->
+
 
         <!-- <button (click)="login()"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding (event)="functioncall()" -->
-        <button (click)="login(userid,password)"type="button"  class="btn btn-primary button1 ">LOGIN</button><!--event binding using template reference variable-->
-
+        <!-- <button (click)="login(userid,password)"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding using template reference variable -->
+        <button type="submit"  class="btn btn-primary button1 ">LOGIN</button>
+        <a routerLink="register">SIGN UP</a>
+    </form>
     </div>
 </div>
 </body>

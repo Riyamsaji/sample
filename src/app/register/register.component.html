@@ -9,14 +9,18 @@
 </head>
 
 <body>
+    <div class="container">
     <div class="section1">
-        <input type="text" placeholder="
-        userid" class="form-control m-2">
+        <form (ngSubmit)="register()">
+        <input type="text" placeholder=" userid" class="form-control m-2"  name="userid"[(ngModel)]="userid">
+        <input type="text" placeholder="username" class="form-control m-2" name="username" [(ngModel)]="username">
+
+        <input type="text" placeholder="password" class="form-control m-2"name="password" [(ngModel)]="password">
         
-        <input type="text" placeholder="
-        password" class="form-control m-2">
-        <button onclick="register()" type="button"  class="btn btn-primary button1 ">REGISTER</button>
+        <button type="submit"  class="btn btn-primary button1 ">REGISTER</button>
+    </form>
     </div>
+</div>
 </body>
 
 </html>
