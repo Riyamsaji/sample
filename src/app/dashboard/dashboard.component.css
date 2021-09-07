@@ -1,0 +1,32 @@
+.btn1{
+
+margin-left: 500px;
+
+}
+.button1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    
+}
+.button1:hover{
+    background-color: green;
+    color:white
+}
+p{
+    color:green;
+    font-weight:bolder;
+}
+a{
+   margin-left:20px;
+   text-decoration:none;
+   color:rebeccapurple;
+   font-weight: bolder;
+}
+input{
+    margin-top: 20px;
+}
+.footer{
+    width:700px;
+
+}

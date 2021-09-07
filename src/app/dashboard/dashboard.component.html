@@ -8,14 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>WELCOME TO REMINDER APP</h1>
+        <h1>WELCOME {{username}}</h1>
+        <p>{{Date}}</p>
         <div class="section1">
-            <form (ngSubmit)=submit()>
-            <input type="date" placeholder="enter a date" class="form-control" name="date"([ngModel])="date">
-            <input type="text" placeholder="enter the reminder" class="form-control" name="reminder"([ngModel])="reminder">
-            <button type="submit" class="btn btn-success">ADD REMINDER</button>
-            <button type="button" class="btn btn-primary">VIEW ALL REMINDER</button>
+            <div class="row">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-5">
+            <form  [formGroup]="eventform"(ngSubmit)=addEvent()>
+            <input type="date" placeholder="enter a date" class="form-control" name="date"formControlName="date">
+            <input type="text" placeholder="enter the reminder" class="form-control" name="reminder"formControlName="reminder">
+   
+            <button type="submit" class="btn  button1">ADD REMINDER</button>
+        <a routerLink="/events" >VIEW ALL REMINDER</a>
         </form>
+    </div>
+</div>
+        </div>
+        <app-deleteconfirmation (OnDelete)="OnDeleteAtParent($event)"[item]="userid" >  </app-deleteconfirmation>   
+          <div class="footer">
+            <button class="btn btn-danger btn1" (click)="deleteUser()">Delete Account</button>
         </div>
     </div>
 </body>

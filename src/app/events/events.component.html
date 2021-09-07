@@ -1,0 +1,19 @@
+<h1>VIEW ALL EVENTS</h1>
+<div class="section1">
+    <button class="btn btn-success" (click)="sort()">SORT</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>date</th>&nbsp;&nbsp;
+        <th>name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of events">
+            <th>{{event.date}}</th>&nbsp;&nbsp;
+            <th>{{event.reminder}} </th>
+        </tr>
+    </tbody>
+</table>
+

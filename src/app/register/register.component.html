@@ -11,12 +11,17 @@
 <body>
     <div class="container">
     <div class="section1">
-        <form (ngSubmit)="register()">
-        <input type="text" placeholder=" userid" class="form-control m-2"  name="userid"[(ngModel)]="userid">
-        <input type="text" placeholder="username" class="form-control m-2" name="username" [(ngModel)]="username">
+        <h1>REGISTRATION PAGE</h1>
+        <form [formGroup]="registerForm "(ngSubmit)="register()"><!--add [formGroup]="formname"-->
+        <input type="text" placeholder=" userid" class="form-control m-2"  name="userid" formControlName="userid"><!--add formControlName="entry name"-->
+        <div  *ngIf="(this.registerForm.get('userid')?.touched || this.registerForm.get('userid')?.dirty) &&this.registerForm.get('userid')?.errors"class="error">Invalid userid</div>
 
-        <input type="text" placeholder="password" class="form-control m-2"name="password" [(ngModel)]="password">
-        
+        <input type="text" placeholder="username" class="form-control m-2" name="username" formControlName="username">
+        <div  *ngIf="(this.registerForm.get('username')?.touched || this.registerForm.get('username')?.dirty) &&this.registerForm.get('username')?.errors"class="error">Invalid username</div>
+
+        <input type="text" placeholder="password" class="form-control m-2"name="password" formControlName="password">
+        <div  *ngIf="(this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty) &&this.registerForm.get('password')?.errors"class="error">Invalid password</div>
+
         <button type="submit"  class="btn btn-primary button1 ">REGISTER</button>
     </form>
     </div>

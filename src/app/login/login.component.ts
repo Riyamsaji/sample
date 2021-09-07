@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../Services/database.service';
 
@@ -9,13 +10,22 @@ import { DatabaseService } from '../Services/database.service';
 })
 
 export class LoginComponent implements OnInit {
-  aim = "WELCOME"
+  aim = "WELCOME TO REMINDER APP!"
   userid = "Userid please"
   password = ""
- 
+  image="./assets/IMAGES/login.jpg"
+  
+
+
+loginForm=this.fb.group({
+  userid:['',[Validators.required,Validators.pattern('[0-9]*')]],
+  password:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]]
+})
+  
+
   //dependency injection -> dependent classes in which instance of one class can be assigned to other class's object
   // always dependency injected on constructor
-  constructor(private router:Router,private db:DatabaseService) { }
+  constructor(private router:Router,private db:DatabaseService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -30,14 +40,32 @@ export class LoginComponent implements OnInit {
   // }
 
   login() {
-    var userid =this.userid;
-    var password = this.password;
- var result=this.db.login(userid,password)
-if(result){
-  alert("login sucess")
-  this.router.navigateByUrl("dashboard")
-}
+    if(this.loginForm.valid){
+    var userid =this.loginForm.value.userid;
+    var password = this.loginForm.value.password;
+ this.db.login(userid,password)
+ .subscribe((result:any)=>{
+  if(result){
+    alert(result.message)
+    localStorage.setItem("username",result.username)
+    localStorage.setItem("userid",result.userid)
+    this.router.navigateByUrl("dashboard")
+  
+    
+  }
+ },(result)=>{
+   console.log(result.error.message)
+   alert(result.error.message)
+
+ })
+
 
      
-  }
+  
+    }
+else{
+  alert("invalid form")
+}
+}
+
 }

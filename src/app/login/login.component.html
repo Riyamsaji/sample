@@ -11,26 +11,61 @@
 <body>
     <div class="container">
         <h1>{{aim}}</h1>
-    <div class="section1">
-        <!-- <input type="text" placeholder=" userid" class="form-control m-2" (change)="useridchange($event)">event binding using $event as argument -->
-        <!-- <input type="text" placeholder=" userid" class="form-control m-2" #userid>event binding using template refernecvariablee -->
+        <div class="section1">
+            <!-- <input type="text" placeholder=" userid" class="form-control m-2" (change)="useridchange($event)">event binding using $event as argument -->
+            <!-- <input type="text" placeholder=" userid" class="form-control m-2" #userid>event binding using template refernecvariablee -->
 
-        <!-- two way data binding -->
-        <form (ngSubmit)="login()"><!--to use ngSubmit we need form tag and when we use ([ngModel]) then we should add a property named "name" and change button type to submit-->
-        <input type="text" placeholder=" userid" class="form-control m-2" name="userid"[(ngModel)]="userid">
-
-        <!-- <input type="text" placeholder="password" class="form-control m-2"(change)="passwordchange($event)" > -->
-        <!-- <input type="text" placeholder="password" class="form-control m-2" #password>event binding using template refernecvariablee -->
-        <input type="text" placeholder="password" class="form-control m-2"  name="password"[(ngModel)]="password"><!--event binding using template refernecvariablee -->
+            <!-- two way data binding -->
 
 
-        <!-- <button (click)="login()"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding (event)="functioncall()" -->
-        <!-- <button (click)="login(userid,password)"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding using template reference variable -->
-        <button type="submit"  class="btn btn-primary button1 ">LOGIN</button>
-        <a routerLink="register">SIGN UP</a>
-    </form>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <!--to use ngSubmit we need form tag and when we use ([ngModel]) then we should add a property named "name" and change button type to submit-->
+                <div class="card mb-3" style="max-width: 1040px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img [src]="image" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <!-- <input type="text" placeholder="password" class="form-control m-2" #password>event binding using template refernecvariablee -->
+
+                                <input type="text" placeholder=" userid" class="form-control m-2" name="userid"
+                                    formControlName="userid">
+
+                                <div *ngIf="(this.loginForm.get('userid')?.touched || this.loginForm.get('userid')?.dirty) &&this.loginForm.get('userid')?.errors"
+                                    class="error">Invalid userid</div>
+
+
+                                <!-- <input type="text" placeholder="password" class="form-control m-2"(change)="passwordchange($event)" > -->
+                                <!-- <input type="text" placeholder="password" class="form-control m-2" #password>event binding using template refernecvariablee -->
+
+                                <input type="text" placeholder="password" class="form-control m-2" name="password"
+                                    formControlName="password">
+                                <!--event binding using template refernecvariablee -->
+                                <div *ngIf="(this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)&& this.loginForm.get('password')?.errors "
+                                    class="error">Invalid password</div>
+                                    
+                <!-- <button (click)="login()"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding (event)="functioncall()" -->
+                <!-- <button (click)="login(userid,password)"type="button"  class="btn btn-primary button1 ">LOGIN</button>event binding using template reference variable -->
+                <button type="submit" class="btn button1 ">LOGIN</button>
+                <a routerLink="register" style="font-weight: bold;">SIGN UP</a>
+            </div>
+        </div>
+
+                    </div>
+                    </div>
+             
+
+            </form>
+                         
+                
+             
+        </div>
+
     </div>
-</div>
+
+     
+
 </body>
 
 </html>
